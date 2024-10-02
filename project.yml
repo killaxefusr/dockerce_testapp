@@ -7,6 +7,8 @@ services:
       dockerfile: buildDockerfile
     volumes:
       - maven-build:/tmp/maven/target
+  working_dir: /tmp/maven
+  command: mvn package
 
   mysql-db-prod:
     image: mysql:8.0
