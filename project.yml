@@ -31,7 +31,7 @@ services:
       - mysql-db-prod 
     volumes:
       - maven-build:/usr/local/tomcat/webapps
-      - ./Config.properties:/usr/local/tomcat/ROOT/
+      - ./сonfig:/usr/local/tomcat/ROOT/
     ports:
       - "80:8080"
 
