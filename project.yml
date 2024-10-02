@@ -19,7 +19,7 @@ services:
       MYSQL_USER: testuser
       MYSQL_PASSWORD: TestPassword2345
     volumes:
-      - db1:/var/lib/mysql
+      - db-prod:/var/lib/mysql
     ports:
       - '3306:3306'
 
@@ -31,10 +31,10 @@ services:
       - mysql-db-prod 
     volumes:
       - maven-build:/usr/local/tomcat/webapps
-      - ./сonfig:/usr/local/tomcat/ROOT/
+      - './сonfig:/usr/local/tomcat/ROOT/'
     ports:
-      - "80:8080"
+      - "8080:8080"
 
 volumes:
   maven-build:
-  db1:
+  db-prod:
