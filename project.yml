@@ -1,2 +1,38 @@
 ---
-version: '3'
+version: '3.8'
+services:
+  maven-builder:
+    build:
+      context: .
+      dockerfile: buildDockerfile
+    volumes:
+      - maven-build:/tmp/maven/target
+
+  mysql-db-prod:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: TestPassword1234
+	  MYSQL_DATABASE: db_app42
+	  MYSQL_USER: testuser
+	  MYSQL_PASSWORD: TestPassword2345
+	volumes:
+	  - db:/var/lib/mysql
+	ports:
+      - '3306:3306'
+
+  tomcat-server-prod:
+    image: tomcat:9.0.91-jdk8-temurin
+	restart: always
+    depends_on: 
+      - maven-builder
+      - mysql-db-prod 
+    volumes:
+      - maven-build:/usr/local/tomcat/webapps
+	  - ./Config.properties:/usr/local/tomcat/ROOT/
+    ports:
+      - "80:8080"
+	  
+volumes:
+  maven-build:
+  db:
