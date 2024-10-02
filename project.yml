@@ -11,7 +11,7 @@ services:
     command: mvn package
 
   mysql-db-prod:
-    image: mysql:8.0
+    image: mysql:5.6.51
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: TestPassword1234
