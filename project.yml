@@ -19,7 +19,7 @@ services:
       MYSQL_USER: testuser
       MYSQL_PASSWORD: TestPassword2345
     volumes:
-      - db-prod:/var/lib/mysql
+      - dbprod:/var/lib/mysql
     ports:
       - '3306:3306'
 
